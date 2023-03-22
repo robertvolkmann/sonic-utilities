@@ -415,11 +415,11 @@ class ConfigMgmtDPB(ConfigMgmt):
             delPorts (list): ports to be deleted.
             portJson (dict): Config DB json Part of all Ports, generated from
                 platform.json.
-            force (bool): if false return dependecies, else delete dependencies.
+            force (bool): if false return dependencies, else delete dependencies.
             loadDefConfig: If loadDefConfig, add default config for ports as well.
 
         Returns:
-            (deps, ret) (tuple)[list, bool]: dependecies and success/failure.
+            (deps, ret) (tuple)[list, bool]: dependencies and success/failure.
         '''
         MAX_WAIT = 60
         try:
@@ -462,15 +462,15 @@ class ConfigMgmtDPB(ConfigMgmt):
 
     def _deletePorts(self, ports=list(), force=False):
         '''
-        Delete ports and dependecies from data tree, validate and return resultant
+        Delete ports and dependencies from data tree, validate and return resultant
         config.
 
         Parameters:
             ports (list): list of ports
-            force (bool): if false return dependecies, else delete dependencies.
+            force (bool): if false return dependencies, else delete dependencies.
 
         Returns:
-            (configToLoad, deps, ret) (tuple)[dict, list, bool]: config, dependecies
+            (configToLoad, deps, ret) (tuple)[dict, list, bool]: config, dependencies
             and success/fail.
         '''
         configToLoad = None; deps = None
@@ -480,10 +480,10 @@ class ConfigMgmtDPB(ConfigMgmt):
             self.sysLog(doPrint=True, msg='Start Port Deletion')
             deps = list()
 
-            # Get all dependecies for ports
+            # Get all dependencies for ports
             for port in ports:
                 xPathPort = self.sy.findXpathPortLeaf(port)
-                self.sysLog(doPrint=True, msg='Find dependecies for port {}'.\
+                self.sysLog(doPrint=True, msg='Find dependencies for port {}'.\
                     format(port))
                 dep = self.sy.find_data_dependencies(str(xPathPort))
                 if dep:
